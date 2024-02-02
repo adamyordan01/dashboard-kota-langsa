@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Menu;
+use App\Models\SubMenu;
+use App\Observers\MenuObserver;
+use App\Observers\SubMenuObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +29,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Menu::observe(MenuObserver::class);
+        SubMenu::observe(SubMenuObserver::class);
     }
 
     /**
